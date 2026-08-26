@@ -1,0 +1,21 @@
+{
+  "name": "api-bus-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A bus API application",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test",
+    "lint": "echo \"(no linter configured yet)\""
+  },
+  "keywords": [
+    "bus",
+    "api"
+  ],
+  "license": "UNLICENSED"
+}

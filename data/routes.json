@@ -1,0 +1,217 @@
+{
+  "generatedFrom": {
+    "stops": "https://data.busrouter.sg/v1/stops.min.json",
+    "services": "https://data.busrouter.sg/v1/services.min.json"
+  },
+  "datasetLastUpdated": "2026-08-05T00:58:40.720Z",
+  "origin": {
+    "name": "CT Hub 2",
+    "address": "114 Lavender Street, S338729",
+    "lat": 1.311588,
+    "lng": 103.863375
+  },
+  "originStops": [
+    {
+      "code": "07361",
+      "name": "Bef Kallang Bahru",
+      "road": "Lavender St",
+      "heading": "NW",
+      "walkMinutes": 3
+    },
+    {
+      "code": "07371",
+      "name": "Aft Kallang Rd",
+      "road": "Lavender St",
+      "heading": "NW",
+      "walkMinutes": 4
+    },
+    {
+      "code": "07369",
+      "name": "Aft Kallang Bahru",
+      "road": "Lavender St",
+      "heading": "SE",
+      "walkMinutes": 5
+    },
+    {
+      "code": "07379",
+      "name": "Aperia / Bef Kallang Rd",
+      "road": "Lavender St",
+      "heading": "SE",
+      "walkMinutes": 5
+    }
+  ],
+  "destinations": [
+    {
+      "id": "tiong-bahru",
+      "name": "Tiong Bahru",
+      "maxWalkMinutes": 10,
+      "anchors": [
+        {
+          "name": "Tiong Bahru MRT (EW17)",
+          "lat": 1.28597,
+          "lng": 103.827
+        },
+        {
+          "name": "Tiong Bahru Market",
+          "lat": 1.2855,
+          "lng": 103.8324
+        }
+      ],
+      "fallback": {
+        "note": "Direct buses only reach the edge of the estate. For Tiong Bahru MRT itself, 61 then 63 (change at Bef Crawford Bridge, 1 stop away) is 18 stops and drops you at the station door. Or take 107 two stops to Lavender MRT and ride the East-West line straight through.",
+        "transfer": {
+          "legs": [
+            {
+              "service": "61",
+              "from": "07379",
+              "to": "01339",
+              "stops": 1
+            },
+            {
+              "service": "63",
+              "from": "01339",
+              "to": "10161",
+              "stops": 16
+            }
+          ],
+          "alightName": "Opp Tiong Bahru Stn/Plaza",
+          "metresToStation": 35
+        }
+      },
+      "direct": [
+        {
+          "service": "175",
+          "serviceName": "Clementi Int ⇄ Lor 1 Geylang Ter",
+          "direction": 1,
+          "boardStop": "07379",
+          "boardIndex": 9,
+          "alightStop": "06069",
+          "alightIndex": 28,
+          "stopsTravelled": 19,
+          "alight": {
+            "code": "06069",
+            "lat": 1.28623,
+            "lng": 103.83496,
+            "name": "Aft Furama RiverFront",
+            "road": "Outram Rd",
+            "metresToAnchor": 296,
+            "nearestAnchor": "Tiong Bahru Market",
+            "walkMinutes": 7,
+            "walkPenalty": 2,
+            "exceedsWalkPreference": false
+          }
+        },
+        {
+          "service": "175",
+          "serviceName": "Clementi Int ⇄ Lor 1 Geylang Ter",
+          "direction": 1,
+          "boardStop": "07369",
+          "boardIndex": 8,
+          "alightStop": "06069",
+          "alightIndex": 28,
+          "stopsTravelled": 20,
+          "alight": {
+            "code": "06069",
+            "lat": 1.28623,
+            "lng": 103.83496,
+            "name": "Aft Furama RiverFront",
+            "road": "Outram Rd",
+            "metresToAnchor": 296,
+            "nearestAnchor": "Tiong Bahru Market",
+            "walkMinutes": 7,
+            "walkPenalty": 2,
+            "exceedsWalkPreference": false
+          }
+        },
+        {
+          "service": "961",
+          "serviceName": "Woodlands Temp Int ⇄ Lor 1 Geylang Ter",
+          "direction": 1,
+          "boardStop": "07379",
+          "boardIndex": 5,
+          "alightStop": "10501",
+          "alightIndex": 25,
+          "stopsTravelled": 20,
+          "alight": {
+            "code": "10501",
+            "lat": 1.28106,
+            "lng": 103.82528,
+            "name": "Blk 104",
+            "road": "Jln Bt Merah",
+            "metresToAnchor": 578,
+            "nearestAnchor": "Tiong Bahru MRT (EW17)",
+            "walkMinutes": 13,
+            "walkPenalty": 3,
+            "exceedsWalkPreference": true
+          }
+        },
+        {
+          "service": "961",
+          "serviceName": "Woodlands Temp Int ⇄ Lor 1 Geylang Ter",
+          "direction": 1,
+          "boardStop": "07369",
+          "boardIndex": 4,
+          "alightStop": "10501",
+          "alightIndex": 25,
+          "stopsTravelled": 21,
+          "alight": {
+            "code": "10501",
+            "lat": 1.28106,
+            "lng": 103.82528,
+            "name": "Blk 104",
+            "road": "Jln Bt Merah",
+            "metresToAnchor": 578,
+            "nearestAnchor": "Tiong Bahru MRT (EW17)",
+            "walkMinutes": 13,
+            "walkPenalty": 3,
+            "exceedsWalkPreference": true
+          }
+        },
+        {
+          "service": "961M",
+          "serviceName": "Woodlands Temp Int ⇄ Lor 1 Geylang Ter",
+          "direction": 1,
+          "boardStop": "07379",
+          "boardIndex": 5,
+          "alightStop": "10501",
+          "alightIndex": 28,
+          "stopsTravelled": 23,
+          "alight": {
+            "code": "10501",
+            "lat": 1.28106,
+            "lng": 103.82528,
+            "name": "Blk 104",
+            "road": "Jln Bt Merah",
+            "metresToAnchor": 578,
+            "nearestAnchor": "Tiong Bahru MRT (EW17)",
+            "walkMinutes": 13,
+            "walkPenalty": 3,
+            "exceedsWalkPreference": true
+          }
+        },
+        {
+          "service": "961M",
+          "serviceName": "Woodlands Temp Int ⇄ Lor 1 Geylang Ter",
+          "direction": 1,
+          "boardStop": "07369",
+          "boardIndex": 4,
+          "alightStop": "10501",
+          "alightIndex": 28,
+          "stopsTravelled": 24,
+          "alight": {
+            "code": "10501",
+            "lat": 1.28106,
+            "lng": 103.82528,
+            "name": "Blk 104",
+            "road": "Jln Bt Merah",
+            "metresToAnchor": 578,
+            "nearestAnchor": "Tiong Bahru MRT (EW17)",
+            "walkMinutes": 13,
+            "walkPenalty": 3,
+            "exceedsWalkPreference": true
+          }
+        }
+      ]
+    }
+  ]
+}

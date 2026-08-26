@@ -1,0 +1,109 @@
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --line: #e4e2dd;
+  --ink: #1c1b19;
+  --muted: #6b6862;
+  --accent: #1f6f4a;
+  --accent-soft: #e8f3ec;
+  --warn: #8a4b12;
+  --radius: 10px;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16161a;
+    --surface: #1e1e23;
+    --line: #32323a;
+    --ink: #ececf0;
+    --muted: #9a97a2;
+    --accent: #6ecf9b;
+    --accent-soft: #1c2d24;
+    --warn: #e0a86a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+  max-width: 34rem;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1rem/1.5 var(--sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+h1 { margin: 0 0 .75rem; font-size: 1.25rem; letter-spacing: -.01em; }
+
+.dest { display: block; font-size: .8125rem; color: var(--muted); }
+.dest select {
+  display: block;
+  margin-top: .25rem;
+  padding: .5rem .625rem;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+/* The recommendation: the one thing to read if you read nothing else. */
+.pick {
+  margin: 1.25rem 0 1rem;
+  padding: .875rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+.pick-lead { margin: 0; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.pick-body { margin: .25rem 0 0; font-size: 1.375rem; font-weight: 650; }
+.pick-body .svc { font-family: var(--mono); }
+.pick-note { margin: .375rem 0 0; font-size: .8125rem; color: var(--muted); }
+
+.options { margin: 0; padding: 0; list-style: none; }
+
+.opt {
+  display: grid;
+  grid-template-columns: 3.25rem 1fr auto;
+  gap: .75rem;
+  align-items: baseline;
+  padding: .6875rem .25rem;
+  border-bottom: 1px solid var(--line);
+}
+.opt:last-child { border-bottom: 0; }
+
+/* Uncatchable: kept visible, because seeing the bus you cannot make is what
+   explains the recommendation -- but clearly stood down. */
+.opt.missed { opacity: .45; }
+
+.opt-svc { font: 650 1.0625rem/1.2 var(--mono); }
+.opt-where { font-size: .8125rem; color: var(--muted); }
+.opt-when { text-align: right; white-space: nowrap; }
+.opt-eta { font: 650 1.0625rem/1.2 var(--sans); font-variant-numeric: tabular-nums; }
+.opt-then { font-size: .75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tag { font-size: .6875rem; text-transform: uppercase; letter-spacing: .04em; }
+.tag.est { color: var(--warn); }
+.tag.miss { color: var(--muted); }
+
+.status { margin: 1rem .25rem; font-size: .8125rem; color: var(--muted); }
+.status.error { color: var(--warn); }
+
+.fallback {
+  margin-top: 1.25rem;
+  padding: .875rem 1rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  font-size: .875rem;
+  background: var(--surface);
+}
+.fallback h2 { margin: 0 0 .375rem; font-size: .8125rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.fallback p { margin: 0; }
+
+footer { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: .875rem; }
+footer p { margin: 0 0 .5rem; font-size: .6875rem; line-height: 1.5; color: var(--muted); }
+footer a { color: inherit; }

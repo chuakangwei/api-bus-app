@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Bus from CT Hub 2</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header>
+  <h1>Bus from CT Hub 2</h1>
+  <label class="dest">
+    Going to
+    <select id="destination"></select>
+  </label>
+</header>
+
+<main>
+  <section id="pick" class="pick" hidden></section>
+  <ul id="options" class="options"></ul>
+  <p id="status" class="status">Loading…</p>
+  <section id="fallback" class="fallback" hidden></section>
+</main>
+
+<footer>
+  <p id="freshness"></p>
+  <p class="attrib">
+    Live arrivals via
+    <a href="https://github.com/cheeaun/arrivelah">arrivelah</a>;
+    stop and route data via
+    <a href="https://data.busrouter.sg/">busrouter.sg</a>.
+    Contains information from LTA DataMall accessed 2026-08-26, made available under the
+    <a href="https://datamall.lta.gov.sg/content/datamall/en/SingaporeOpenDataLicence.html">Singapore Open Data Licence v1.0</a>.
+    Also contains data &copy; <a href="https://www.onemap.gov.sg/legal/termsofuse.html">OneMap</a>
+    and &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.
+    Not affiliated with or endorsed by any transport agency.
+  </p>
+</footer>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>

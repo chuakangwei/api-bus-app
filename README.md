@@ -86,10 +86,13 @@ These came out of the route data and shaped the defaults:
 
 ## Deploying
 
-`.github/workflows/pages.yml` publishes the repo root to GitHub Pages. It is
-**manual-trigger only** (`workflow_dispatch`) — GitHub Pages requires a public repo or
-a paid plan, so it is not wired to push in order to avoid a permanently failing build.
-Run it from the Actions tab once Pages is enabled for the repo.
+Live at **https://chuakangwei.github.io/api-bus-app/**
+
+`.github/workflows/pages.yml` publishes the repo root to GitHub Pages on every push to
+`main`, gated on lint and tests so a broken push cannot reach the live site. It stays
+dispatchable (`gh workflow run pages.yml`) for redeploying without a code change —
+useful because the workflow regenerates `data/routes.json` at deploy time, so a
+redeploy alone picks up fresher busrouter.sg data.
 
 ## Attribution
 

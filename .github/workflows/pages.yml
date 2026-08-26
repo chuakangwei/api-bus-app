@@ -1,8 +1,11 @@
 name: Deploy to Pages
 
-# Manual only. GitHub Pages needs a public repo or a paid plan, so triggering
-# this on push would leave a permanently failing build on a private free repo.
+# Publishes on every push to main, so the live site tracks the repo without a
+# manual step. Kept dispatchable too, for redeploying to pick up fresher
+# busrouter.sg route data without needing a code change.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -10,6 +13,8 @@ permissions:
   pages: write
   id-token: write
 
+# Never cancel a deploy midway: a half-published site is worse than a slightly
+# stale one. Queued runs supersede each other instead.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -33,17 +38,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Now that publishing is automatic, these gate it: a push that breaks the
+      # ranking logic must not reach the live site.
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      # Regenerated at deploy time rather than trusting the committed copy, so a
+      # redeploy alone is enough to pick up new upstream route data.
       - name: Refresh route data
         run: npm run build:routes
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: .
 
       - name: Deploy
         id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

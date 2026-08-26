@@ -70,7 +70,8 @@ for (const o of options.slice(0, 8)) {
     `${o.catchable ? ' ' : '×'} ${o.service.padStart(5)}  ${eta.padStart(6)}` +
       `  ${o.arrival.live ? 'live ' : 'sched'}` +
       `  ${o.stopName} (${o.walkMinutes} min walk)` +
-      `  → ${alight.stopsTravelled} stops, ${alight.alight.walkMinutes} min walk from ${alight.alight.name}`,
+      `  → ${alight.stopsTravelled} stops, ${alight.alight.walkMinutes} min walk from ${alight.alight.name}` +
+      `  (~${alight.estimatedMinutes} min)`,
   );
 }
 

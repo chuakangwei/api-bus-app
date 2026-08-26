@@ -47,11 +47,14 @@ Everything you would want to change lives in `src/lib/config.js`:
 - `DESTINATIONS` — each is an anchor point (or several) plus `maxWalkMinutes`. A
   destination is therefore a *catchment* of acceptable alighting stops, not a single
   stop. Add one and re-run `npm run build:routes`.
-- `MAX_REASONABLE_STOPS` — rides longer than this are suppressed as detours.
+- `src/lib/journey.js` — how detours are rejected. Options are scored end to end
+  (`stops × 1.3 min + final walk`) and kept if they are within 10 min of the best
+  option for that destination. A fixed stop-count cap would wrongly discard a long
+  ride that drops you at the door; see the Redhill note below.
 - `WALK_PENALTY_MINUTES` — per-stop corrections where a uniform circuity factor is too
   optimistic because the walk crosses a major road.
 
-## Findings worth knowing about Tiong Bahru
+## Findings worth knowing
 
 These came out of the route data and shaped the defaults:
 
@@ -65,9 +68,21 @@ These came out of the route data and shaped the defaults:
 - **Service 145 is deliberately suppressed.** It technically reaches Tiong Bahru Road,
   but only after 29 stops via Tanjong Pagar, HarbourFront and Telok Blangah, arriving
   at the wrong end of the estate. Offering it as "your direct bus" would mislead.
-- **For the MRT itself, a transfer beats every direct option**: 61 then 63, changing at
-  Bef Crawford Bridge (one stop from the office), 18 stops total, alighting 35 m from
-  the station. The app surfaces this as a note rather than pretending otherwise.
+- **For Tiong Bahru MRT itself, a transfer beats every direct option**: 61 then 63,
+  changing at Bef Crawford Bridge (one stop from the office), 18 stops total, alighting
+  35 m from the station. The app surfaces this as a note rather than pretending otherwise.
+
+### Redhill MRT
+
+- Two direct options, and they are **near-identical end to end (~43 min)** despite
+  looking very different: 961 is 23 stops but leaves a 13 min walk across Jln Bt Merah,
+  while 145 is 32 stops and stops 47 m from the station entrance.
+- This pair is why detour rejection compares whole journeys rather than counting stops.
+  145 is correctly suppressed for Tiong Bahru (worse on both ride *and* walk) and
+  correctly kept for Redhill (much worse ride, far better walk).
+- **Rail is genuinely faster**: Redhill is on the same East-West line as Lavender, so
+  107 two stops to Lavender MRT then seven stations to Redhill beats both buses. The
+  app says so rather than pretending the bus is the answer.
 
 ## Deploying
 

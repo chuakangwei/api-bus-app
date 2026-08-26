@@ -59,16 +59,24 @@ export const DESTINATIONS = [
       },
     },
   },
+  {
+    id: 'redhill-mrt',
+    name: 'Redhill MRT',
+    // A single anchor: the station itself. Stop 10209 sits 16 m from the
+    // entrance, so anything reaching it is effectively door-to-door.
+    anchors: [{ name: 'Redhill MRT (EW18)', lat: 1.28966, lng: 103.81682 }],
+    maxWalkMinutes: 10,
+    // Redhill is on the same East-West line as Lavender, so rail is the fast
+    // route and the direct buses are both ~43 min. Worth saying outright.
+    fallback: {
+      note:
+        'Both direct buses take about 45 minutes. Rail is much faster: 107 two ' +
+        'stops to Lavender MRT, then the East-West line seven stations straight ' +
+        'to Redhill, no change. Of the buses, 145 is a longer ride but stops 47 m ' +
+        'from the station; 961 is shorter but leaves a 13 min walk across Jln Bt Merah.',
+    },
+  },
 ];
-
-/**
- * A ride this long is a detour, not a route. Several services technically reach
- * a Tiong Bahru catchment stop but only after touring half of Singapore --
- * service 145 gets there in 29 stops via Tanjong Pagar, HarbourFront and Telok
- * Blangah, arriving at the wrong end of the estate. Offering that as "your bus"
- * would be actively misleading.
- */
-export const MAX_REASONABLE_STOPS = 25;
 
 /**
  * Extra minutes added to specific final walks where a straight-line estimate
@@ -82,4 +90,6 @@ export const WALK_PENALTY_MINUTES = {
   '10501': 3,
   '10071': 3,
   '10081': 3,
+  // Also on Jln Bt Merah; the walk to Redhill Stn crosses it.
+  '10101': 3,
 };

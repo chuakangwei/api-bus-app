@@ -15,9 +15,9 @@ import {
   ORIGIN,
   ORIGIN_STOPS,
   DESTINATIONS,
-  MAX_REASONABLE_STOPS,
   WALK_PENALTY_MINUTES,
 } from '../src/lib/config.js';
+import { rejectDetours } from '../src/lib/journey.js';
 
 const STOPS_URL = 'https://data.busrouter.sg/v1/stops.min.json';
 const SERVICES_URL = 'https://data.busrouter.sg/v1/services.min.json';
@@ -130,8 +130,9 @@ const destinations = DESTINATIONS.map((dest) => {
     }
   }
   const all = [...bestPerPair.values()].sort((a, b) => a.stopsTravelled - b.stopsTravelled);
-  const direct = all.filter((d) => d.stopsTravelled <= MAX_REASONABLE_STOPS);
-  const detours = all.filter((d) => d.stopsTravelled > MAX_REASONABLE_STOPS);
+  // Judge whole journeys against the best available, not against a fixed cap.
+  const { keep: direct, drop: detours } = rejectDetours(all);
+  direct.sort((a, b) => a.estimatedMinutes - b.estimatedMinutes);
 
   console.log(
     `\n${dest.name}: ${stopsInRange.size} stops within ${dest.maxWalkMinutes} min walk` +
@@ -139,14 +140,15 @@ const destinations = DESTINATIONS.map((dest) => {
   );
   for (const d of detours) {
     console.log(
-      `  suppressed ${d.service} dir${d.direction}: ${d.stopsTravelled} stops via ${d.alight.name} -- detour`,
+      `  suppressed ${d.service} dir${d.direction}: ${d.stopsTravelled} stops + ${d.alight.walkMinutes} min walk` +
+        ` = ~${d.estimatedMinutes} min via ${d.alight.name}`,
     );
   }
   for (const d of direct) {
     console.log(
       `  ${d.service.padStart(5)} dir${d.direction}  ${d.boardStop} -> ${d.alightStop}` +
         `  ${String(d.stopsTravelled).padStart(2)} stops  ${d.alight.name}` +
-        ` (${d.alight.metresToAnchor} m / ${d.alight.walkMinutes} min walk)`,
+        ` (${d.alight.metresToAnchor} m / ${d.alight.walkMinutes} min walk)  ~${d.estimatedMinutes} min total`,
     );
   }
 
@@ -157,6 +159,9 @@ const destinations = DESTINATIONS.map((dest) => {
     anchors: dest.anchors,
     fallback: dest.fallback ?? null,
     direct,
+    // Long rides are kept, not discarded: for some destinations the scenic
+    // route drops you at the door while the short ride leaves a long walk.
+    detours,
   };
 });
 

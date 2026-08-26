@@ -68,7 +68,7 @@ function renderPick(best, legs) {
     <p class="pick-body"><span class="svc">${best.service}</span> in ${minutesText(best.arrival.minutesAway)}</p>
     <p class="pick-note">
       Walk ${best.walkMinutes} min to ${best.stopName}${best.spareMinutes > 0 ? ` &middot; ${best.spareMinutes} min spare` : ''}
-      ${alight ? `<br>Ride ${alight.stopsTravelled} stops, then ${alight.alight.walkMinutes} min walk from ${alight.alight.name}` : ''}
+      ${alight ? `<br>Ride ${alight.stopsTravelled} stops, then ${alight.alight.walkMinutes} min walk from ${alight.alight.name}<br>About ${alight.estimatedMinutes} min once aboard` : ''}
     </p>`;
 }
 
@@ -82,7 +82,7 @@ function renderOptions(options, legs) {
       <span class="opt-svc">${o.service}</span>
       <span class="opt-where">
         ${o.stopName} &middot; ${o.walkMinutes} min walk
-        ${alight ? `<br>${alight.stopsTravelled} stops &rarr; ${alight.alight.walkMinutes} min walk` : ''}
+        ${alight ? `<br>${alight.stopsTravelled} stops &rarr; ${alight.alight.walkMinutes} min walk &middot; ~${alight.estimatedMinutes} min` : ''}
         ${o.catchable ? '' : '<br><span class="tag miss">Not enough time</span>'}
       </span>
       <span class="opt-when">

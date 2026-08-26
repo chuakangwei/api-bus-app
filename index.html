@@ -3,37 +3,76 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>Bus from CT Hub 2</title>
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#070b14">
+<title>CTH2 Bus — CT Hub 2 Departures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<header>
-  <h1>Bus from CT Hub 2</h1>
-  <label class="dest">
-    Going to
-    <select id="destination"></select>
-  </label>
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="hud-head">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <rect x="4" y="3" width="16" height="14" rx="2.5"/>
+        <path d="M4 9h16M8 21v-2M16 21v-2"/>
+        <circle cx="8.5" cy="13.5" r="1.1" fill="currentColor" stroke="none"/>
+        <circle cx="15.5" cy="13.5" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+    </span>
+    <div class="brand-text">
+      <h1>CTH2 <em>BUS</em></h1>
+      <p>CT HUB 2 &middot; LAVENDER ST DEPARTURES</p>
+    </div>
+  </div>
+
+  <div class="chips">
+    <span class="chip chip-live" id="chip-live"><i class="pulse"></i>LIVE</span>
+    <span class="chip">SGT <b id="clock">--:--:--</b></span>
+    <span class="chip">UPDATED <b id="updated">&ndash;</b></span>
+    <span class="chip chip-accent">REFRESH &middot; <b id="countdown">&ndash;</b></span>
+  </div>
 </header>
 
-<main>
-  <section id="pick" class="pick" hidden></section>
-  <ul id="options" class="options"></ul>
-  <p id="status" class="status">Loading…</p>
-  <section id="fallback" class="fallback" hidden></section>
+<div class="banner" id="banner" hidden><i class="dot"></i><span id="banner-text"></span></div>
+
+<main class="layout">
+  <section class="panel hero" id="hero">
+    <div class="panel-head">
+      <h2>Recommended departure</h2>
+      <label class="dest-wrap">
+        <span class="sr-only">Destination</span>
+        <select id="destination" aria-label="Destination"></select>
+      </label>
+    </div>
+    <div id="hero-body" class="hero-body">
+      <p class="hero-empty">Acquiring feed&hellip;</p>
+    </div>
+  </section>
+
+  <section class="panel" id="board">
+    <div class="panel-head">
+      <h2>Departures</h2>
+      <span class="panel-hint" id="board-hint"></span>
+    </div>
+    <div class="tiles" id="options"></div>
+    <p id="status" class="status">Loading&hellip;</p>
+  </section>
 </main>
 
 <footer>
-  <p id="freshness"></p>
+  <p class="foot-row"><span id="freshness"></span></p>
   <p class="attrib">
-    Live arrivals via
-    <a href="https://github.com/cheeaun/arrivelah">arrivelah</a>;
-    stop and route data via
-    <a href="https://data.busrouter.sg/">busrouter.sg</a>.
-    Contains information from LTA DataMall accessed 2026-08-26, made available under the
-    <a href="https://datamall.lta.gov.sg/content/datamall/en/SingaporeOpenDataLicence.html">Singapore Open Data Licence v1.0</a>.
-    Also contains data &copy; <a href="https://www.onemap.gov.sg/legal/termsofuse.html">OneMap</a>
-    and &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.
+    Arrivals <a href="https://github.com/cheeaun/arrivelah">arrivelah</a> &middot;
+    routes <a href="https://data.busrouter.sg/">busrouter.sg</a> &middot;
+    contains information from LTA DataMall under the
+    <a href="https://datamall.lta.gov.sg/content/datamall/en/SingaporeOpenDataLicence.html">Singapore Open Data Licence v1.0</a>,
+    data &copy; <a href="https://www.onemap.gov.sg/legal/termsofuse.html">OneMap</a> and
+    &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.
     Not affiliated with or endorsed by any transport agency.
   </p>
 </footer>

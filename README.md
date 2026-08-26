@@ -36,6 +36,21 @@ npm run lint           # syntax gate
 `index.html` must be served over HTTP — opening it via `file://` breaks both ES module
 imports and `fetch`.
 
+## Interface
+
+A dark instrument-panel treatment: near-black field with a faint grid, monospace
+data, uppercase tracked labels, and one accent colour per meaning (cyan = the pick,
+green = imminent, amber = scheduled rather than GPS-tracked, rose = missed).
+
+- The recommendation is the hero readout; each departure is a metric tile.
+- Two clocks run. Arrivals are refetched every 15 s, matching arrivelah2's own cache,
+  while the board re-renders every second from the stored payload so countdowns tick
+  down without extra requests. The header shows the feed age and the next refresh.
+- **Dark only, deliberately.** The design depends on glow against a dark field; a light
+  variant would be a different design rather than this one inverted.
+- Palette checked against WCAG AA — every text colour clears 4.5:1 on both the page and
+  panel fills.
+
 ## Configuration
 
 Everything you would want to change lives in `src/lib/config.js`:

@@ -46,11 +46,6 @@ jobs:
       - name: Test
         run: npm test
 
-      # Regenerated at deploy time rather than trusting the committed copy, so a
-      # redeploy alone is enough to pick up new upstream route data.
-      - name: Refresh route data
-        run: npm run build:routes
-
       - name: Configure Pages
         uses: actions/configure-pages@v6
 

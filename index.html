@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#070b14">
-<title>CTH2 Bus — CT Hub 2 Departures</title>
+<title>SGBUS — Singapore Bus Departures</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
       </svg>
     </span>
     <div class="brand-text">
-      <h1>CTH2 <em>BUS</em></h1>
-      <p>CT HUB 2 &middot; LAVENDER ST DEPARTURES</p>
+      <h1>SG<em>BUS</em></h1>
+      <p>DIRECT DEPARTURE PLANNER &middot; SINGAPORE</p>
     </div>
   </div>
 
@@ -40,17 +40,61 @@
 
 <div class="banner" id="banner" hidden><i class="dot"></i><span id="banner-text"></span></div>
 
+<section class="panel route">
+  <div class="panel-head">
+    <h2>Route</h2>
+    <span class="panel-hint" id="net-state">Loading network&hellip;</span>
+  </div>
+
+  <div class="fields">
+    <div class="field" data-role="from">
+      <label for="from">From</label>
+      <div class="field-row">
+        <input id="from" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Building, address, postal code or stop">
+        <button type="button" id="gps" class="btn-gps" title="Use my current location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="8"/>
+            <path d="M12 1.5v2.5M12 20v2.5M1.5 12h2.5M20 12h2.5" stroke-linecap="round"/>
+          </svg>
+          <span>GPS</span>
+        </button>
+      </div>
+      <ul class="suggest" id="from-suggest" role="listbox" hidden></ul>
+      <p class="field-note" id="from-note"></p>
+    </div>
+
+    <div class="field" data-role="to">
+      <label for="to">To</label>
+      <div class="field-row">
+        <input id="to" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Where are you going?">
+      </div>
+      <ul class="suggest" id="to-suggest" role="listbox" hidden></ul>
+      <p class="field-note" id="to-note"></p>
+    </div>
+  </div>
+
+  <div class="presets">
+    <span class="presets-label">Saved</span>
+    <div class="preset-chips" id="presets"></div>
+  </div>
+
+  <label class="walk-budget">
+    <span>Max walk to stop</span>
+    <input id="walk" type="range" min="3" max="15" step="1" value="8">
+    <b id="walk-out">8 min</b>
+  </label>
+</section>
+
 <main class="layout">
   <section class="panel hero" id="hero">
     <div class="panel-head">
       <h2>Recommended departure</h2>
-      <label class="dest-wrap">
-        <span class="sr-only">Destination</span>
-        <select id="destination" aria-label="Destination"></select>
-      </label>
+      <span class="panel-hint" id="hero-hint"></span>
     </div>
     <div id="hero-body" class="hero-body">
-      <p class="hero-empty">Acquiring feed&hellip;</p>
+      <p class="hero-empty">Choose where you are and where you are going.</p>
     </div>
   </section>
 
@@ -60,7 +104,7 @@
       <span class="panel-hint" id="board-hint"></span>
     </div>
     <div class="tiles" id="options"></div>
-    <p id="status" class="status">Loading&hellip;</p>
+    <p id="status" class="status"></p>
   </section>
 </main>
 
@@ -69,6 +113,7 @@
   <p class="attrib">
     Arrivals <a href="https://github.com/cheeaun/arrivelah">arrivelah</a> &middot;
     routes <a href="https://data.busrouter.sg/">busrouter.sg</a> &middot;
+    search <a href="https://www.onemap.gov.sg/">OneMap</a> &middot;
     contains information from LTA DataMall under the
     <a href="https://datamall.lta.gov.sg/content/datamall/en/SingaporeOpenDataLicence.html">Singapore Open Data Licence v1.0</a>,
     data &copy; <a href="https://www.onemap.gov.sg/legal/termsofuse.html">OneMap</a> and
